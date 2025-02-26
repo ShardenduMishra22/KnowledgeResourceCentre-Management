@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/toaster";
-
 import localFont from "next/font/local";
+import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { auth } from "@/auth"
+import "./globals.css";
 
 const ibmPlexSans = localFont({
   src: [
@@ -23,19 +24,23 @@ const bebasNeue = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | KRC Management',
-    default: 'KRC Management - A Library Management System made By Shardendu Mishra',
+    template: '%s | Li-Breeze',
+    default: 'Li-Breeze - A Library Management System made By Shardendu Mishra',
   },
   description: 'An Application That can be used to manage Library System of college.',
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+
   return (
     <html lang="en" className="dark">
-      <body className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`} >
-        {children}
-        <Toaster />
-      </body>
+      <SessionProvider session={session}>
+        <body className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`} >
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 };
