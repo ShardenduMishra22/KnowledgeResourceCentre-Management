@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrat5e",
+    "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -45,6 +48,8 @@
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.3",
     "embla-carousel-react": "^8.5.2",
+    "imagekit": "^6.0.0",
+    "imagekitio-next": "^1.0.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.474.0",
     "next": "15.1.6",
